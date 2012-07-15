@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.9)  16 JUL 2012 01:22
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.9)  16 JUL 2012 01:26
 entering extended mode
  %&-line parsing enabled.
 **FinalWork.tex
@@ -2961,14 +2961,15 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyre' on input line 1.
 
-<Images/uml.png, id=283, 720.6925pt x 378.41376pt>
-File: Images/uml.png Graphic file (type png)
- <use Images/uml.png>)
-Overfull \hbox (10.5811pt too wide) in paragraph at lines 9--83
+
+Overfull \hbox (10.5811pt too wide) in paragraph at lines 3--6
 \T2A/cmr/m/n/12 ек-ти-ро-ва-ния. В ка-че-стве про-ект-но-го CASE-средства был в
 ы-дран про-дукт Visual Paradigm.
  []
 
+<Images/uml.png, id=284, 720.6925pt x 378.41376pt>
+File: Images/uml.png Graphic file (type png)
+ <use Images/uml.png>)
 [20
 
 
@@ -3595,9 +3596,6 @@ File: Images/vibor.png Graphic file (type png)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  8108 strings out of 493848
@@ -3620,7 +3618,7 @@ super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb><
 ts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-s
 uper/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></
 usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on FinalWork.pdf (41 pages, 958323 bytes).
+Output written on FinalWork.pdf (41 pages, 958314 bytes).
 PDF statistics:
  479 PDF objects out of 1000 (max. 8388607)
  109 named destinations out of 1000 (max. 500000)
