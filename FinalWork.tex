@@ -1,0 +1,91 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[T2A]{fontenc}  %поддержка кириллицы в ЛаТеХ
+\addtolength{\hoffset}{-1.7mm} % горизонтальное смещение всего текста как целого
+\usepackage[utf8]{inputenc}  %По умолчанию кодировка KOI8 для *nix-систем
+\usepackage[english,russian]{babel} %определение языков в документе
+\usepackage{amssymb,amsmath,amsfonts,latexsym,mathtext} %расширенные наборы
+  % математических символов
+\usepackage{cite}  %"умные" библиографические ссылки
+%(сортировка и сжатие)
+\usepackage{indentfirst} %делать отступ в начале параграфа
+\usepackage{enumerate}  %создание и автоматическая нумерация списков
+\usepackage{tabularx}  %продвинутые таблицы
+%\usepackage{showkeys}  %раскомментируйте, чтобы в документе были видны
+%ссылки на литературу, рисунки и таблицы
+\usepackage[labelsep=period]{caption} %заменить умолчальное разделение ':' на '.'
+% в подписях к рисункам и таблицам
+%\usepackage[onehalfspacing]{setspace} %"умное" расстояние между строк - установить
+% 1.5 интервала от нормального, эквивалентно
+ \renewcommand{\baselinestretch}{1.24}
+\usepackage{graphicx} %разрешить включение PostScript-графики
+\graphicspath{{Images/}} %относительный путь к каталогу с рисунками,это может быть мягкая ссылка
+
+\usepackage{geometry} %способ ручной установки полей
+\geometry{top=2cm} %поле сверху
+\geometry{bottom=2.5cm} %поле снизу
+\geometry{left=2.5cm} %поле справа
+\geometry{right=2cm} %поле слева
+
+\usepackage[colorlinks,linkcolor=blue]{hyperref}%гиперссылки в тексте
+\newcommand{\tocsecindent}{\hspace{7mm}}% отступ для введения
+
+\makeatletter
+\bibliographystyle{unsrt} %Стиль библиографических ссылок БибТеХа - нумеровать
+%в порядке упоминания в тексте
+\renewcommand{\@biblabel}[1]{#1.}
+\makeatother
+
+\begin{document}
+%Задаем определение
+\newtheorem{Def}{Определение}
+
+%Титулный лист
+\input{TitleList}
+\setcounter{page}{2} % начать нумерацию с номера три
+
+%Реферат
+\input{Referat}
+
+%Меняем название Оглавления
+\renewcommand{\contentsname}{\begin{center}Содержание\end{center}}
+%Оглавление
+\tableofcontents 
+\newpage
+
+%Список сокращений
+\input{Abbreviations}
+
+%Введение
+\input{Intro}
+
+%Основная часть
+%\chapter{Исследование предметной области}
+	%Обшее определение искусственных нейронных сетей
+	\include{BasicDefenition}
+	%Математические модели работы нейронов
+	\include{MathModels}
+	%Топологии нейронных сетей
+	\include{Topology}
+	%Модели обучения нейронных сетей
+	\include{StudingModels}
+	%Парадигмы обучения нейронных сетей
+	\include{StudingParadigm}
+
+%\chapter{Практическая реализация искусственной нейронной сети}	
+	%Постановка задачи распознавания 
+	\include{Targets}
+	%UML проектирование
+	\include{UML}
+	
+	%Обучение и результат работы программы
+	\include{Results}
+%Заключение
+\input{Outro}
+%Список литературы
+\input{Books}
+%Исходники
+	\include{Source}
+	\include{Vibor}
+
+
+\end{document}

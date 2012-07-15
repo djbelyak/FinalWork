@@ -1,0 +1,542 @@
+\section*{Приложение 1. Исходный код программы}
+\addcontentsline{toc}{section}{\tocsecindent{Приложение 1. Исходный код программы}}
+
+\begin{verbatim}
+
+package net.scienceontheweb.djbelyak.NeuronNetwork.model;
+
+import java.util.Random;
+
+/**
+ * Класс, описывающий нейрон
+ */
+public class Neuron {
+	/**
+	 * Вектор входных сигналов нейрона
+	 */
+	private double[] x;
+	/**
+	 * Вектор весовых коэффициентов
+	 */
+	private double[] w;
+	/**
+	 * Параметр наклона сигмоидальной функции
+	 */
+	private double a = 0.5;
+	/**
+	 * Количество входных сигналов
+	 */
+	private int n = 1;
+
+	/**
+	 * Функция инициализации синаптических весов случайными элементами
+	 * @param aParameter Максимальное значение синаптического веса
+	 */
+	public void initWeights(double aParameter) {
+		Random rand = new Random();
+		for (int i=0; i<this.n; i++)
+			w[i]=rand.nextDouble()*aParameter;
+	}
+
+	/**
+	 * Корректировка синаптических весов при обучении
+	 * @param aEta Скорость обучения
+	 * @param aDelta Корректируемая ошибка между выходным и требуемым сигналом
+	 */
+	public void correctWeights(double aEta, double aDelta) {
+		for (int i=0; i<this.n; i++)
+			w[i]+=aEta*aDelta*x[i];
+	}
+
+	/**
+	 * Конструктор
+	 * @param aN Количество синапсов нейрона
+	 */
+	public  Neuron(int aN) {
+		n = aN;
+		w = new double[n];
+		x = new double[n];
+	}
+
+	/**
+	 * Метод получения выходного значения нейрона
+	 */
+	public double getY() {
+		double sum = 0.0;
+		for (int i = 0; i<n; i++)
+			sum +=w[i]*x[i];
+		return 1/(1+Math.exp(-a*sum));
+	}
+
+	public void setX(double[] aX) {
+		this.x = aX;
+	}
+
+	public void setA(double aA) {
+		this.a = aA;
+	}
+}
+
+package net.scienceontheweb.djbelyak.NeuronNetwork.model;
+
+import net.scienceontheweb.djbelyak.NeuronNetwork.model.Neuron;
+
+/**
+ * Класс нейронной сети
+ */
+public class Network {
+	/**
+	 * Количество входных нейронов
+	 */
+	private int nIn;
+	/**
+	 * Количество выходных нейронов
+	 */
+	private int nOut;
+	/**
+	 * Параметр наклона сигмоидальной функции
+	 */
+	private double a;
+	/**
+	 * Скорость обучения нейронной сети
+	 */
+	private double eta;
+	/**
+	 * Коллекция нейронов слоя
+	 */
+	private Neuron neurons[];
+
+	/**
+	 * Конструктор
+	 * @param aIn Размерность входного вектора
+	 * @param aOut Размерность выходного вектора
+	 */
+	public Network(int aIn, int aOut) {
+		nIn = aIn;
+		nOut = aOut;
+		
+		neurons = new Neuron[nOut];
+		for (int i = 0; i < nOut; i++)
+		{
+			neurons [i] = new Neuron(nIn);
+			neurons [i].initWeights(0.15);
+		}
+	}
+
+	/**
+	 * Метод обработки входного образа
+	 * @param aXIn Входной вектор
+	 */
+	public double[] work(double[] aXIn) {
+		double y[] = new double [nOut];
+		for (int i = 0; i < nOut; i++)
+		{
+			neurons[i].setX(aXIn);
+			y[i] = neurons[i].getY();
+		}
+		return y;
+	}
+
+	/**
+	 * Метод обучения нейронной сети
+	 * @param aXIn Входной вектор
+	 * @param aYOut Требуемый выходной вектор
+	 */
+	public double teach(double[] aXIn, double[] aYOut) {
+		double d, sr_d=0.0;
+        
+        double[] t = this.work(aXIn);
+        // подстройка весов каждого нейрона
+        for (int j = 0; j < nOut; j++) 
+        {
+        	d = aYOut[j] - t[j];
+            neurons[j].correctWeights(eta, d);
+            sr_d+=d;
+        }
+        sr_d/=(double)nOut;
+        return sr_d;
+        
+	}
+
+	public int getNIn() {
+		return this.nIn;
+	}
+
+	public int getNOut() {
+		return this.nOut;
+	}
+
+	public void setA(double aA) {
+		this.a = aA;
+	}
+
+	public double getA() {
+		return this.a;
+	}
+
+	public void setEta(double aEta) {
+		this.eta = aEta;
+	}
+
+	public double getEta() {
+		return this.eta;
+	}
+}
+
+package net.scienceontheweb.djbelyak.NeuronNetwork.model;
+
+import java.awt.Container;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.image.PixelGrabber;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Класс учителя нейронной сети
+ */
+public class Teacher {
+	/**
+	 * Средняя ошибка на каждом цикле обучения
+	 */
+	private double[] errors;
+	Network network;
+
+	/**
+	 * Конструктор
+	 * @param aNetwork Обучаемая сеть
+	 */
+	public Teacher(Network aNetwork) {
+		network = aNetwork;
+	}
+
+	/**
+	 * Метод генерации входного вектора для персептрона
+	 * @param aIn Входное изображение
+	 */
+	public double[] getInVector(int[] aIn) {
+		double[] x = new double[aIn.length];
+        for (int i = 0; i < aIn.length; i++) {
+            if (aIn[i] == -1) x[i] = 0.0; else x[i] = 1.0;
+        }
+        return x;
+	}
+
+	/**
+	 * Метод генерации контрольного выходного вектора
+	 * @param aIn Номер активного выходного нейрона
+	 */
+	public double[] getOutVector(int aIn) {
+		double[] y = new double [network.getNOut()];
+        for (int i = 0; i < y.length; i++) {
+            if (i == aIn) y[i] = 1.0; else y[i] = 0.0;
+        }
+        return y;
+	}
+
+	/**
+	 * Метод обучения
+	 * @param aPath Путь к файлам с обучающими материалами
+	 * @param aN Количество циклов обучения
+	 */
+	public void teach(String aPath, int aN) {
+		class JPGFilter implements FilenameFilter {
+            public boolean accept(File dir, String name) {
+                return (name.endsWith(".jpg"));
+            }
+        }     
+ 
+        // загрузка всех тестовых изображений в массив img[]
+        String[] list = new File(aPath + "/").list(new JPGFilter());
+        Image[] img = new Image[list.length];        
+        MediaTracker mediaTracker = new MediaTracker(new Container());        
+        int i = 0;
+        for (String s: list) {
+            img[i] = java.awt.Toolkit.getDefaultToolkit().createImage(aPath + "/" + s);
+ 
+            mediaTracker.addImage(img[i], 0);
+            try {
+                mediaTracker.waitForAll();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+            i++;
+        }
+ 
+ 
+        // получение пиксельных массивов каждого изображения
+        // и обучение n раз каждой выборке
+        PixelGrabber pg;
+        int[] pixels;
+		double[] y;
+		double[] x;
+		errors = new double[aN];
+        int w, h;
+        for (i=0; i<aN; i++)
+        {
+            for (int j = 0; j < img.length; j++) {
+                w = img[j].getWidth(null);
+                h = img[j].getHeight(null);
+ 
+                if (w*h > network.getNIn()) continue;
+ 
+                pixels = new int[w*h];
+                pg = new PixelGrabber(img[j], 0, 0, w, h, pixels, 0, w);
+                try {
+                    pg.grabPixels();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ 
+                // получение векторов и обучение перцептрона
+                x = getInVector(pixels);
+                y = getOutVector(Integer.parseInt(String.valueOf(list[j].charAt(0))));
+                errors[i] = network.teach(x, y);
+            }
+        }
+	}
+
+	public double[] getErrors() {
+		return this.errors;
+	}
+}
+
+package net.scienceontheweb.djbelyak.NeuronNetwork.view;
+
+import java.awt.Container;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.PixelGrabber;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+import net.scienceontheweb.djbelyak.NeuronNetwork.model.*;
+
+@SuppressWarnings("serial")
+public class NeuronNetworkFrame extends JFrame {
+
+
+	private JLabel JLabelEta;
+	private JLabel JLabelA;
+	private JLabel JLabelN;
+	private JTextField JTextFieldEta;
+	private JTextField  JTextFieldA;
+	private JSpinner JSpinnerN;
+	private JButton JButtonStud;
+	private JButton JButtonCheck;
+	private JLabel JLabelRes;
+	private Network network;
+	private Teacher teacher;
+
+	public NeuronNetworkFrame()
+	{
+		super();
+		network = new Network(64*64,10);
+		teacher = new Teacher(network);
+		
+	    this.setSize(501, 300);
+	    this.getContentPane().setLayout(null);
+	    this.setTitle("Алгоритмы обучения и топологии нейронных сетей");
+	    this.add(getJLabelEta(),null);
+	    this.add(getJTextFieldEta(),null);
+	    this.add(getJLabelA(),null);
+	    this.add(getJTextFieldA(),null);
+	    this.add(getJLabelN(),null);
+	    this.add(getJSpinnerN(),null);
+	    this.add(getJButtonStud(),null);
+	    this.add(getJButtonCheck(),null);
+	    this.add(getJLabelRes(),null);
+	}
+	
+	private javax.swing.JLabel getJLabelEta() {
+	      if(JLabelEta == null) {
+	    	  JLabelEta = new javax.swing.JLabel();
+	         JLabelEta.setBounds(0, 0, 350, 20);
+	    	  JLabelEta.setText("Скорость обучения ИНС (eta):");
+	      }
+	      return JLabelEta;
+	   }
+	
+	
+	private javax.swing.JLabel getJLabelA() {
+	      if(JLabelA == null) {
+	    	  JLabelA = new javax.swing.JLabel();
+	    	  JLabelA.setBounds(0, 20, 350, 20);
+	    	  JLabelA.setText("Параметр наклона сигмоидальной функции (a):");
+	      }
+	      return JLabelA;
+	   }
+	
+	private javax.swing.JLabel getJLabelN() {
+	      if(JLabelN == null) {
+	    	  JLabelN = new javax.swing.JLabel();
+	    	  JLabelN.setBounds(0, 40, 350, 20);
+	    	  JLabelN.setText("Количество шагов обучения (n):");
+	      }
+	      return JLabelN;
+	   }
+	
+	private javax.swing.JTextField getJTextFieldEta(){
+		if(JTextFieldEta == null) {
+			JTextFieldEta = new javax.swing.JTextField();
+			JTextFieldEta.setBounds(350, 1, 148, 18);
+			JTextFieldEta.setText("0.15");
+			
+		}
+		return JTextFieldEta;
+	}
+	
+	private javax.swing.JTextField getJTextFieldA(){
+		if(JTextFieldA == null) {
+			JTextFieldA = new javax.swing.JTextField();
+			JTextFieldA.setBounds(350, 21, 148, 18);
+			JTextFieldA.setText("0.5");
+		}
+		return JTextFieldA;
+	}
+	
+	private javax.swing.JSpinner getJSpinnerN(){
+		if(JSpinnerN == null) {
+			JSpinnerN = new javax.swing.JSpinner();
+			JSpinnerN.setBounds(350, 41, 148, 18);	
+			JSpinnerN.setValue(100);
+			
+		}
+		return JSpinnerN;
+	}
+	
+	private javax.swing.JButton getJButtonStud(){
+		if(JButtonStud == null) {
+			JButtonStud = new javax.swing.JButton();
+			JButtonStud.setBounds(0, 60, 250, 20);	
+			JButtonStud.setText("Обучить нейронную сеть");
+			JButtonStud.addActionListener(new  ActionListener() {
+				@Override
+	               public void actionPerformed(ActionEvent e) {
+						int n = Integer.parseInt(JSpinnerN.getValue().toString());
+						network.setA(Double.parseDouble(JTextFieldA.getText()));
+						network.setEta(Double.parseDouble(JTextFieldEta.getText()));
+	                    teacher.teach("data", n);
+	                    
+	                 // create a dataset...
+	                 
+	                    XYSeries series1 = new XYSeries("Ошибка");
+	                    for (int i = 0; i < n; i++)
+	                    	series1.add(i, teacher.getErrors()[i]);
+	                    
+	                    
+	                    XYSeriesCollection dataset = new XYSeriesCollection();
+	                    dataset.addSeries(series1);
+	                    // create the chart...
+	                    JFreeChart chart = ChartFactory.createXYLineChart("Зависимость ошибки от номера итерации обучения", 
+	                    		"Номер итерации", "Корректируемая ошибка", dataset, PlotOrientation.VERTICAL, true, true, true);
+	     
+
+	                    // create and display a frame...
+	                    ChartFrame frame = new ChartFrame("Алгоритмы обучения и топологии нейронных сетей", chart);
+	                    frame.pack();
+	                    frame.setVisible(true);
+
+	               }
+
+			
+
+	          });
+
+			
+		}
+		return JButtonStud;
+	}
+	
+	private javax.swing.JButton getJButtonCheck(){
+		if(JButtonCheck == null) {
+			JButtonCheck = new javax.swing.JButton();
+			JButtonCheck.setBounds(250, 60, 250, 20);	
+			JButtonCheck.setText("Проверить работу");
+			JButtonCheck.addActionListener(new ActionListener(){
+
+			
+				public void actionPerformed(ActionEvent arg0) {
+					JFileChooser fileopen = new JFileChooser();
+					int ret = fileopen.showDialog(null, "Открыть файл");				
+					if (ret == JFileChooser.APPROVE_OPTION) {
+						
+						
+						MediaTracker mediaTracker = new MediaTracker(new Container());        
+						
+							Image	img = java.awt.Toolkit.getDefaultToolkit().createImage(fileopen.getSelectedFile().getAbsolutePath());
+									mediaTracker.addImage(img, 0);
+				            try {
+				                mediaTracker.waitForAll();
+				            } catch (InterruptedException ex) {
+				                Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+				            }
+					int w = img.getWidth(null);
+	                int h = img.getHeight(null);
+	 
+	                int [] pixels = new int[w*h];
+	                PixelGrabber pg = new PixelGrabber(img, 0, 0, w, h, pixels, 0, w);
+	                try {
+	                    pg.grabPixels();
+	                } catch (InterruptedException ex) {
+	                    Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+	                }
+	 
+	                // получение векторов и обучение перцептрона
+	                double [] x = teacher.getInVector(pixels);
+	                double [] y = network.work(x);
+	                JLabelRes.setText("<html>");
+	                for (int k=0; k<y.length;k++)
+	                	JLabelRes.setText(JLabelRes.getText()+k+":"+y[k]+"<br>");
+					
+					}
+					JLabelRes.setText(JLabelRes.getText()+"</html>");
+				}});
+			
+		}
+		return JButtonCheck;
+	}
+	
+	private javax.swing.JLabel getJLabelRes() {
+	      if(JLabelRes == null) {
+	    	  JLabelRes = new javax.swing.JLabel();
+	    	  JLabelRes.setBounds(0, 80, 500, 170);
+	    	  JLabelRes.setText("");
+	      }
+	      return JLabelRes;
+	   }
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	{
+		NeuronNetworkFrame m = new NeuronNetworkFrame();
+		m.setVisible(true);
+
+	}
+
+}
+
+
+\end{verbatim}
