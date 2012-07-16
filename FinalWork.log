@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.9)  17 JUL 2012 01:04
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.9)  17 JUL 2012 01:08
 entering extended mode
  %&-line parsing enabled.
 **FinalWork.tex
@@ -3536,9 +3536,6 @@ File: Images/vibor.png Graphic file (type png)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  8108 strings out of 493848
@@ -3560,7 +3557,7 @@ super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb><
 /usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fon
 ts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-s
 uper/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on FinalWork.pdf (40 pages, 953206 bytes).
+Output written on FinalWork.pdf (40 pages, 954924 bytes).
 PDF statistics:
  486 PDF objects out of 1000 (max. 8388607)
  121 named destinations out of 1000 (max. 500000)
