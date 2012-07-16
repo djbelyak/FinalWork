@@ -1,5 +1,5 @@
-\section*{Приложение 1. Исходный код программы}
-\addcontentsline{toc}{section}{\tocsecindent{Приложение 1. Исходный код программы}}
+\section*{Приложение А. Исходный код программы}
+\addcontentsline{toc}{section}{\tocsecindent{Приложение А. Исходный код программы}}
 
 \begin{verbatim}
 
@@ -265,9 +265,7 @@ public class Teacher {
  
             i++;
         }
- 
- 
-        // получение пиксельных массивов каждого изображения
+         // получение пиксельных массивов каждого изображения
         // и обучение n раз каждой выборке
         PixelGrabber pg;
         int[] pixels;
@@ -376,7 +374,6 @@ public class NeuronNetworkFrame extends JFrame {
 	      return JLabelEta;
 	   }
 	
-	
 	private javax.swing.JLabel getJLabelA() {
 	      if(JLabelA == null) {
 	    	  JLabelA = new javax.swing.JLabel();
@@ -447,22 +444,17 @@ public class NeuronNetworkFrame extends JFrame {
 	                    XYSeriesCollection dataset = new XYSeriesCollection();
 	                    dataset.addSeries(series1);
 	                    // create the chart...
-	                    JFreeChart chart = ChartFactory.createXYLineChart("Зависимость ошибки от номера итерации обучения", 
-	                    		"Номер итерации", "Корректируемая ошибка", dataset, PlotOrientation.VERTICAL, true, true, true);
-	     
-
+	                    JFreeChart chart = ChartFactory.createXYLineChart(
+"Зависимость ошибки от номера итерации обучения", 
+"Номер итерации", "Корректируемая ошибка", 
+dataset, PlotOrientation.VERTICAL, true, true, true);
 	                    // create and display a frame...
-	                    ChartFrame frame = new ChartFrame("Алгоритмы обучения и топологии нейронных сетей", chart);
+	                    ChartFrame frame = new ChartFrame(
+"Алгоритмы обучения и топологии нейронных сетей", chart);
 	                    frame.pack();
 	                    frame.setVisible(true);
-
 	               }
-
-			
-
 	          });
-
-			
 		}
 		return JButtonStud;
 	}
@@ -473,22 +465,18 @@ public class NeuronNetworkFrame extends JFrame {
 			JButtonCheck.setBounds(250, 60, 250, 20);	
 			JButtonCheck.setText("Проверить работу");
 			JButtonCheck.addActionListener(new ActionListener(){
-
-			
 				public void actionPerformed(ActionEvent arg0) {
 					JFileChooser fileopen = new JFileChooser();
 					int ret = fileopen.showDialog(null, "Открыть файл");				
 					if (ret == JFileChooser.APPROVE_OPTION) {
-						
-						
 						MediaTracker mediaTracker = new MediaTracker(new Container());        
-						
-							Image	img = java.awt.Toolkit.getDefaultToolkit().createImage(fileopen.getSelectedFile().getAbsolutePath());
+							Image	img = java.awt.Toolkit.getDefaultToolkit().createImage(
+fileopen.getSelectedFile().getAbsolutePath());
 									mediaTracker.addImage(img, 0);
 				            try {
 				                mediaTracker.waitForAll();
 				            } catch (InterruptedException ex) {
-				                Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+ Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
 				            }
 					int w = img.getWidth(null);
 	                int h = img.getHeight(null);
@@ -498,7 +486,7 @@ public class NeuronNetworkFrame extends JFrame {
 	                try {
 	                    pg.grabPixels();
 	                } catch (InterruptedException ex) {
-	                    Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
+ Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, null, ex);
 	                }
 	 
 	                // получение векторов и обучение перцептрона
@@ -524,8 +512,7 @@ public class NeuronNetworkFrame extends JFrame {
 	      }
 	      return JLabelRes;
 	   }
-	
-	
+
 	/**
 	 * @param args
 	 */
@@ -537,6 +524,4 @@ public class NeuronNetworkFrame extends JFrame {
 	}
 
 }
-
-
 \end{verbatim}

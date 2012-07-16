@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,12pt]{article}
 \usepackage[T2A]{fontenc}  %поддержка кириллицы в ЛаТеХ
 \addtolength{\hoffset}{-1.7mm} % горизонтальное смещение всего текста как целого
 \usepackage[utf8]{inputenc}  %По умолчанию кодировка KOI8 для *nix-систем
@@ -20,11 +20,15 @@
 \usepackage{graphicx} %разрешить включение PostScript-графики
 \graphicspath{{Images/}} %относительный путь к каталогу с рисунками,это может быть мягкая ссылка
 
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ -- }
+\captionsetup{justification=centering,labelsep=defffis}
+
 \usepackage{geometry} %способ ручной установки полей
 \geometry{top=2cm} %поле сверху
-\geometry{bottom=2.5cm} %поле снизу
-\geometry{left=2.5cm} %поле справа
-\geometry{right=2cm} %поле слева
+\geometry{bottom=2cm} %поле снизу
+\geometry{left=2cm} %поле справа
+\geometry{right=1cm} %поле слева
 
 \usepackage[colorlinks,linkcolor=blue]{hyperref}%гиперссылки в тексте
 \newcommand{\tocsecindent}{\hspace{7mm}}% отступ для введения
@@ -36,18 +40,19 @@
 \makeatother
 
 \begin{document}
-%Задаем определение
-\newtheorem{Def}{Определение}
 
 %Титулный лист
 \input{TitleList}
 \setcounter{page}{2} % начать нумерацию с номера три
+\renewcommand{\figurename}{Рисунок}
+
+
 
 %Реферат
 \input{Referat}
 
 %Меняем название Оглавления
-\renewcommand{\contentsname}{\begin{center}Содержание\end{center}}
+\renewcommand{\contentsname}{\centering Содержание}
 %Оглавление
 \tableofcontents 
 \newpage
