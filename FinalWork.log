@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.9)  16 JUL 2012 22:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.7.9)  17 JUL 2012 00:00
 entering extended mode
  %&-line parsing enabled.
 **FinalWork.tex
@@ -924,6 +924,12 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyre' on input line 3.
 
+
+Overfull \hbox (1.06319pt too wide) in paragraph at lines 21--24
+[]\T2A/cmr/m/n/12 —уществует мно-же-ство под-хо-дов к ре-а-ли-за-ции ис-кус-ств
+ен-ной ней-рон-ной се-ти (»Ќ—).
+ []
+
 [5])
 \openout2 = `BasicDefenition.aux'.
 
@@ -1200,7 +1206,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyri' on input line 2.
 
-<Images/Neuron.png, id=157, 346.29375pt x 201.00093pt>
+<Images/Neuron.png, id=161, 346.29375pt x 201.00093pt>
 File: Images/Neuron.png Graphic file (type png)
  <use Images/Neuron.png>
 [6
@@ -1429,7 +1435,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyrsftsn' on input line 2.
 
-<Images/BlockSheme.png, id=176, 481.8pt x 301.125pt>
+<Images/BlockSheme.png, id=180, 481.8pt x 301.125pt>
 File: Images/BlockSheme.png Graphic file (type png)
 
 <use Images/BlockSheme.png> [8
@@ -1815,7 +1821,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyrya' on input line 6.
 
-<Images/OneLayer.png, id=218, 240.9pt x 354.32375pt>
+<Images/OneLayer.png, id=222, 240.9pt x 354.32375pt>
 File: Images/OneLayer.png Graphic file (type png)
  <use Images/OneLayer.png>
 
@@ -1958,7 +1964,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 
 
  <./Images/OneLayer.png>]
-<Images/ManyLayer.png, id=227, 324.21124pt x 438.63875pt>
+<Images/ManyLayer.png, id=231, 324.21124pt x 438.63875pt>
 File: Images/ManyLayer.png Graphic file (type png)
 
 <use Images/ManyLayer.png>
@@ -2010,7 +2016,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyre' on input line 44.
 
-<Images/Recurrent.png, id=231, 343.2825pt x 443.6575pt>
+<Images/Recurrent.png, id=235, 343.2825pt x 443.6575pt>
 File: Images/Recurrent.png Graphic file (type png)
 
 <use Images/Recurrent.png> [12 <./Images/ManyLayer.png (PNG copy)>]) [13 <./Ima
@@ -2551,7 +2557,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyrm' on input line 3.
 
-<Images/WithTeacher.png, id=266, 408.52625pt x 322.20375pt>
+<Images/WithTeacher.png, id=270, 408.52625pt x 322.20375pt>
 File: Images/WithTeacher.png Graphic file (type png)
 
 <use Images/WithTeacher.png>
@@ -2960,7 +2966,7 @@ SE\T2A/cmr/m/n/12 -средства был вы-дран про-дукт \T2A/cmr/m/it/12 Visual Paradi
 gm\T2A/cmr/m/n/12 .
  []
 
-<Images/uml.png, id=283, 720.6925pt x 378.41376pt>
+<Images/uml.png, id=287, 720.6925pt x 378.41376pt>
 File: Images/uml.png Graphic file (type png)
  <use Images/uml.png>)
 [20
@@ -3066,29 +3072,29 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyrery' on input line 1.
 
-<Images/check.png, id=290, 504.88625pt x 330.23375pt>
+<Images/check.png, id=294, 504.88625pt x 330.23375pt>
 File: Images/check.png Graphic file (type png)
  <use Images/check.png>
-<Images/stud_0,0015_0,5_50.png, id=294, 684.5575pt x 564.1075pt>
+<Images/stud_0,0015_0,5_50.png, id=298, 684.5575pt x 564.1075pt>
 File: Images/stud_0,0015_0,5_50.png Graphic file (type png)
 
 <use Images/stud_0,0015_0,5_50.png>
-<Images/stud_0,15_0,5_50.png, id=295, 685.56125pt x 566.115pt>
+<Images/stud_0,15_0,5_50.png, id=299, 685.56125pt x 566.115pt>
 File: Images/stud_0,15_0,5_50.png Graphic file (type png)
 
 <use Images/stud_0,15_0,5_50.png>
-<Images/stud_15_0,5_50.png, id=296, 684.5575pt x 563.10374pt>
+<Images/stud_15_0,5_50.png, id=300, 684.5575pt x 563.10374pt>
 File: Images/stud_15_0,5_50.png Graphic file (type png)
 
 <use Images/stud_15_0,5_50.png>
-<Images/stud_0,0015_0,5_100.png, id=298, 685.56125pt x 563.10374pt>
+<Images/stud_0,0015_0,5_100.png, id=302, 685.56125pt x 563.10374pt>
 File: Images/stud_0,0015_0,5_100.png Graphic file (type png)
 
 <use Images/stud_0,0015_0,5_100.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Images/check_0,0015_0,5_50.png, id=301, 504.88625pt x 330.23375pt>
+<Images/check_0,0015_0,5_50.png, id=305, 504.88625pt x 330.23375pt>
 File: Images/check_0,0015_0,5_50.png Graphic file (type png)
 
 <use Images/check_0,0015_0,5_50.png>
@@ -3582,7 +3588,7 @@ Package hyperref Warning: Glyph not defined in PD1 encoding,
 Package hyperref Warning: Glyph not defined in PD1 encoding,
 (hyperref)                removing `\cyra' on input line 2.
 
-<Images/vibor.png, id=406, 679.53876pt x 668.4975pt>
+<Images/vibor.png, id=409, 679.53876pt x 668.4975pt>
 File: Images/vibor.png Graphic file (type png)
  <use Images/vibor.png>)
 [41
@@ -3597,10 +3603,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 8105 strings out of 493848
- 112921 string characters out of 1152824
+ 8109 strings out of 493848
+ 112951 string characters out of 1152824
  192680 words of memory out of 3000000
- 10992 multiletter control sequences out of 15000+50000
+ 10993 multiletter control sequences out of 15000+50000
  18793 words of font info for 50 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,9n,41p,1133b,439s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -3616,9 +3622,9 @@ super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb><
 /usr/share/texmf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fon
 ts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-s
 uper/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on FinalWork.pdf (41 pages, 951704 bytes).
+Output written on FinalWork.pdf (41 pages, 953765 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
- 119 named destinations out of 1000 (max. 500000)
+ 490 PDF objects out of 1000 (max. 8388607)
+ 122 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
